@@ -1,0 +1,67 @@
+<div class="container">
+    <h1>Order Summary</h1>
+    <div class="names">
+       
+
+       <div class="customer" >
+          <h2>Customer Details :-</h2>
+            <p> <span class="a1">Customer Name: </span> {{CustomerDetails.firstName}}</p>
+            <p> <span class="a1">Customer Id: </span> {{CustomerDetails.id}}</p>
+            <p> <span class="a1">Phone number : </span>{{CustomerDetails.mobileNumber}} </p>
+            <p> <span class="a1">Email Id :</span> {{CustomerDetails.emailId}} </p>
+           
+       </div>
+       <div class="details">
+        <h2>Order Details :-</h2>
+      
+        <p> <span class="a1"> Order ID : </span>  {{OrderDetails.orderId}}</p>
+        <p>  <span class="a1">Order Time :  </span>  {{OrderDetails.createdDate | date:'hh:mm:ss' }}</p>
+        <p>  <span class="a1">Order Date : </span>  {{OrderDetails.createdDate | date:'dd/MM/YYYY' }}</p> 
+        <p> <span class="a1">Order Type : </span>{{OrderDetails.orderType }}</p>
+        <p> <span class="a1">Payment mode : </span>{{OrderDetails.paymentMode }}</p>
+        <p> <span class="a1">Address : </span>{{OrderDetails.destination }}</p>
+       </div>
+      
+
+    </div>
+    
+    <h2 class="abc">Product details:-</h2>
+    <table>
+        <tr>
+            <th>Index</th>
+            <th>Product id</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Price</th>
+            <th>Product Quantity</th>
+            <th>Product Quality</th>
+            <th>Sub-Total</th> 
+            
+            
+        </tr>
+      
+        <tr *ngFor="let val of completeProductDetails;let i=index" >
+            <td>{{i+1}}</td>
+            <td>{{val.subCategoriesId}}</td>
+            <td>{{val.subCategoriesName}}</td>
+            <td>{{val.categoriesDomain.categoriesName}}</td>
+            <td>{{val.price}}</td>
+            <td>{{val.quantity}}</td>
+            <td>{{val.quality}}</td>
+            <td>{{val.price*val.quantity}}</td> 
+          
+
+        </tr>
+    </table>
+
+  <div class="amount">
+     <p><span class="a1">Order Type : </span>{{OrderDetails.paymentMode}}</p>
+    <p><span class="a1">Total amount : </span>{{totalAmount}} Rs.</p>
+  </div>
+
+  <div class="salesOrder">
+    <button mat-raised-button color="primary" routerLink="./salesOrder/{{OrderDetails.orderId}}" >
+      Generate Sales Order
+  </button>
+  </div>
+</div>

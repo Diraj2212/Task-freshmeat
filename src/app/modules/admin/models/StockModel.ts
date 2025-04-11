@@ -1,0 +1,29 @@
+export interface StockModel {
+  storeId: string;
+  stockId: string;
+  userId: string;
+  userRoleId: string;
+  categoriesId: string;
+  categoriesName: string;
+  productId: string;
+  productName: string;
+  stockIn: number;
+  stockOut: number;
+  availableQuantity: number;
+  createdDate: Date;
+  modifiedDate: Date;
+  packedDate: Date;
+  expiryDate: Date;
+  myDiscount: number;
+  quality: string;
+  purchasePrice: number;
+  sellingPrice: number;
+  batchNo: string;
+  docCertified: boolean;
+  shelveNo: string;
+  stockValue: number;
+  categoriesTypeId: string;
+  subCategoriesId: string;
+  openingStock: number;
+  closingStock: number;
+}

@@ -1,0 +1,80 @@
+<div>
+  <h1 mat-dialog-title>Verify Your Email Address</h1>
+
+  <p>
+    please check your email account for the verification code we just sent u and
+    enter the code below.
+  </p>
+
+  <h3>Enter OTP</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <input
+          [(ngModel)]="p1"
+          type="text"
+          #txt1
+          maxLength="1"
+          (keyup)="move($event, '', txt1, txt2)"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          [(ngModel)]="p2"
+          #txt2
+          maxlength="1"
+          (keyup)="move($event, txt1, txt2, txt3)"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          [(ngModel)]="p3"
+          #txt3
+          maxlength="1"
+          (keyup)="move($event, txt2, txt3, txt4)"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          [(ngModel)]="p4"
+          #txt4
+          maxlength="1"
+          (keyup)="move($event, txt3, txt4, txt5)"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          [(ngModel)]="p5"
+          #txt5
+          maxlength="1"
+          (keyup)="move($event, txt4, txt5, txt6)"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          #txt6
+          maxlength="1"
+          [(ngModel)]="p6"
+          (keyup)="move($event, txt5, txt6, '')"
+        />
+      </div>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="b1"
+        mat-dialog-close
+        (click)="verifyOTP()"
+      >
+        Verify
+      </button>
+      <button class="b2">RESEND OTP</button>
+    </div>
+  </div>
+</div>

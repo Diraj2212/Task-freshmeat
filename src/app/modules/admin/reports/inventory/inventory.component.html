@@ -1,0 +1,91 @@
+<div class="container">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Enter Store ID" [(ngModel)]="storeId" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="fetchStocks()">
+    Fetch Stock
+  </button>
+
+  <!-- Table and Paginator only displayed if there is data in stocks -->
+  <div *ngIf="stocks && stocks.length > 0">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="productId">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: rgb(0, 115, 115)"
+          >Product Id</mat-header-cell
+        >
+        <mat-cell *matCellDef="let stock"> {{ stock.productId }} </mat-cell>
+      </ng-container>
+
+      <!-- Product Name Column -->
+      <ng-container matColumnDef="productName">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: rgb(0, 115, 115)"
+          >Product Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let stock"> {{ stock.productName }} </mat-cell>
+      </ng-container>
+
+      <!-- Available Quantity Column -->
+      <ng-container matColumnDef="availableQuantity">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: rgb(0, 115, 115)"
+          >Available Quantity</mat-header-cell
+        >
+        <mat-cell *matCellDef="let stock">
+          {{ stock.availableQuantity }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="quality">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: rgb(0, 115, 115)"
+          >Quality</mat-header-cell
+        >
+        <mat-cell *matCellDef="let stock"> {{ stock.quality }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="expiryDate">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: rgb(0, 115, 115)"
+          >Expiry Date</mat-header-cell
+        >
+        <mat-cell *matCellDef="let stock">
+          {{ stock.expiryDate | date : "short" }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: rgb(0, 115, 115)"
+          >Action</mat-header-cell
+        >
+        <mat-cell *matCellDef="let stock">
+          <button mat-icon-button color="accent" (click)="viewStock(stocks)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteStock(stocks)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="blue" (click)="editStock(stocks)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

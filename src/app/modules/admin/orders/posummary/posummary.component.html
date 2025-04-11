@@ -1,0 +1,112 @@
+<div id="contentToConvert">
+  <div class="container1" id="posummaryComponent">
+      <div class="container">
+          <h1>Purchase Order Summary Page</h1>
+          <div class="row" >
+              <div class="col-md-10">
+                  <mat-card-content>
+                      <div class="row">
+                          <div class="col-md-2" style="align-content: right;font-style: bold;">
+                            <label>Purchase OrderId: </label>
+                            </div>
+                            <div class="col-md-1" style="align-content: left;">
+                                  <label>{{orderMdl.orderId}}</label>
+                          </div>
+                          <div class="col-md-1" style="align-content: right;font-style: bold;">
+                            <label>Address: </label></div>
+                            <div class="col-md-2" style="align-content: left;">
+                                  <label>{{orderMdl.consumerAddress}}</label>
+                                  </div>
+                         
+                          <div class="col-md-2" style="align-content: right;font-style: bold;">
+                            <label>Payment Mode: </label>
+                            </div> 
+                            <div class="col-md-1" style="align-content: left;">
+                                 <label>{{orderMdl.paymentMode}}</label>
+                          </div>
+                          </div>
+                          <div class="row"><span style="margin-top: 10px;"></span></div>
+                      <div class="row">
+                          <div class="col-md-2" style="align-content: right;font-style: bold;">
+                            <label>Order Date: </label>
+                            </div>
+                            <div class="col-md-4" style="align-content: left;">
+                                  <label>{{orderMdl.createdDate}}</label>
+                          </div>
+                          <div class="col-md-2" style="align-content: right;font-style: bold;">
+                              <label>Warehouse MailId: </label>
+                              </div>
+                              <div class="col-md-2" style="align-content: left;">
+                                  <label>Prathap123&#64;gmail.com</label>
+                              
+                          </div>
+                      </div>
+                      <div class="row"><span style="margin-top: 10px;"></span></div>
+                      <div class="row">
+                        <div class="col-md-2" style="align-content: right;font-style: bold;">
+                            
+                                <label>Order Status:</label>
+                                </div>
+                                <div class="col-md-1" style="align-content: left;">
+                               <label>{{orderMdl.orderStatus}} </label>
+                            
+                        </div>
+                        <div class="col-md-1" style="align-content: right;font-style: bold;">
+                                <label>Contact:</label>
+                                </div>
+                                <div class="col-md-2" style="align-content: left;">
+                               <label>9898989898</label>
+                            
+                        </div>
+                        <div class="col-md-2" style="align-content: right;font-style: bold;">
+                            <label>Total Amount: </label>
+                            </div>
+                            <div class="col-md-2" style="align-content: left;">
+                              <label>{{orderMdl.totalAmount}}</label>
+                         
+                        </div>
+                    </div>
+                    
+                    <div class="row"><span style="margin-top: 10px;"></span></div>
+                    
+                  </mat-card-content>
+              </div>
+          </div>
+      </div>
+      
+  </div>
+</div>
+
+<table  style="border: 1 px;">
+    <thead>
+<tr>
+  <th>Sl No</th>
+  <th>Product ID</th>
+  <th>Product Name</th>
+  <th>Category Id</th>
+  <th>Unit Price</th>
+  <th>FM Discount</th>
+  <th>Discounted Price</th>
+  <th>Quantity No</th>
+  <th>Total Price</th>
+
+</tr></thead>
+<tr *ngFor="let element of orderDetailsModel; let i =index" >
+
+    <td>{{i+1}}</td>
+    <td>{{ element.productId }}</td>
+    <td >{{ element.productName }}</td>
+    <td >{{ element.categoriesId }}</td>
+    <td > {{element.unitPrice}}</td>
+    <td>{{element.discount}}</td>
+    
+    <td >{{ element.discountedPrice }}</td>
+   <td >{{ element.quantity }}</td>
+     <td  >{{ element.totalPrice }}</td>
+  
+</tr>
+  <!-- Header and Row Definitions -->
+ <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
+
+</table>

@@ -1,0 +1,77 @@
+<h1>Sales order Home Page</h1>
+
+  <div class="row pt-7 mt-5">
+   
+    <div class="col-11 d-flex flex-row-reverse">
+      <span><i class="bi bi-funnel"></i></span>
+
+      <mat-form-field>
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="Start date" [(ngModel)]="fromdate">
+      <input matEndDate placeholder="End date" [(ngModel)]="endDate">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+    </div>
+  </div>
+
+ <div class="col-3  d-flex flex-row-reverse">
+  <mat-form-field>
+    <mat-label>Search Here ..</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex.OrderId"
+      #input
+    />
+  </mat-form-field>
+</div>
+  <table>
+    <tr id="a1">
+      <th>Sl.No</th>
+      <th>OrderDate</th>
+      <th>SalesOrder</th>
+      <th>CustomerId</th>
+      <th>CustomerName</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+
+  
+
+    <tr *ngFor="let list of order; let i = index">
+      <td>{{ i + orderId }}</td>
+      <td>{{ list.ProductName }}</td>
+      <td>{{ list.CustomerName }}</td>
+      <td>{{ list.CustomerAddress }}</td>
+      <td>{{ list.PhoneNumber }}</td>
+      <td>{{ list.orderStatus }}</td>
+      <td><mat-icon>visibility</mat-icon></td>
+
+  
+
+      <td class="customerButtons">
+        <button
+          class="a1"
+          matTooltip="View"
+          routerLink="../products{{ list.orderId }}"
+          matTooltipPosition="above"
+        >
+          <mat-icon>visibility</mat-icon>
+      </button>
+    </td>
+    </tr>
+  </table>
+
+  <mat-divider vertical="true"></mat-divider>
+  <mat-paginator
+    [length]="10"
+    #paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    aria-label="Select page"
+  >
+  </mat-paginator>

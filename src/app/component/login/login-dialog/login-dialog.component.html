@@ -1,0 +1,35 @@
+<div class="text-center modal-size">
+    <h2 mat-dialog-title>Login</h2>
+    <mat-dialog-content [formGroup]="form">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Email / Mobile No" formControlName="emailId" />
+            <mat-error *ngIf="hasError('emailId', 'required')">Field is required</mat-error>
+            <mat-error *ngIf="hasError('emailId', 'pattern')">email</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password" maxlength="20" />
+            <mat-error *ngIf="hasError('password', 'required')">Field is required</mat-error>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions class="pull-right" [align]="'center'">
+        <button mat-raised-button color="accent" [disabled]="form.invalid" (click)="login()">
+            Login
+        </button>
+        <button mat-raised-button class="color-button-close text-white" (click)="close()">
+            Close
+        </button>&nbsp;
+        <mat-spinner *ngIf="loading"></mat-spinner>
+    </mat-dialog-actions>
+    <br>
+    <!-- <span style="color: blue;">Forgot password?</span> -->
+</div>
+<!-- <div class="mmg-theme align-bottom">
+  <span class="cursor-pointer" (click)="forgotPassword()">Forgot Password?</span>
+</div> -->
+<div class="mmg-theme align-bottom">
+
+    <button style="margin-left: 5%; "  (click)="forgotPassword()" mat-raised-button mat-dialog-close >Forgot Password ?</button>
+    
+    <button  style="width: 50%;" (click)="changePassword()" mat-raised-button mat-dialog-close class="a1">Change Password ?</button>
+    
+</div>

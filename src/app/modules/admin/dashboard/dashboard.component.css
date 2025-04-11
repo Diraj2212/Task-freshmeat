@@ -1,0 +1,99 @@
+/* .mainContainer
+{
+    margin-top:2%;
+}
+#greetings
+{
+     font-size: 20px; 
+    color:rgb(227, 231, 227); 
+    
+     font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left:2%;
+    padding-top: 10px;
+}
+.container
+{
+    margin-top:2%;
+    border-radius: 10rem;
+    margin-left: 10rem;
+    
+}
+.card
+{
+     background-image: url('./../../../assets/images/cardTheme.png'); 
+     color: white;
+    background-color: #00897B;
+    background-image: -webkit-gradient(linear, left top, right top, from(#00897B), to(#004D40));
+    background-image: -webkit-linear-gradient(to right, #00897B, #004D40);
+    background-image: -moz-linear-gradient(to right, #00897B, #004D40);
+    background-image: -ms-linear-gradient(to right, #00897B, #004D40);
+    background-image: -o-linear-gradient(to right, #00897B, #004D40);
+    background-image: linear-gradient(to right, #00897B, #004D40);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00897B", endColorstr="#004D40", gradientType="1");
+    height: 200px;
+    width: 200px;
+
+   
+}
+
+
+
+table
+{
+    width: 100%;
+}
+.pClr
+{
+color: #00897B;
+
+}
+.graphContaine{
+    margin-top: 5%;
+    box-sizing: border-box;
+    border: 50rem;
+    
+    
+} */
+
+.m1{
+    -webkit-text-fill-color:  #245297
+    ;
+    display: flex;
+   box-sizing: border-box;
+   background-color:hsl(2, 61%, 89%);
+   margin-top: 3rem;
+   margin-left: 1rem;
+   margin-right: 30rem;
+   
+
+
+   }
+   .graphContaine{
+    margin-top: 5%;
+    box-sizing: border-box;
+    border: 50rem;
+ 
+    
+    
+}
+.text-warning mr-2{
+    color: blue;
+}
+.container
+{
+    margin-top:1rem;
+    border-radius: 10rem;
+    margin-left: 1rem;
+  
+    margin-right: 2rem;
+    
+   }
+   .main{
+    overflow-x: hidden;
+   }
+   
+
+  
+  
+ 

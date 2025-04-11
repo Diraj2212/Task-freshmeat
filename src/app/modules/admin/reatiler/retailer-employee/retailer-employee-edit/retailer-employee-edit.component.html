@@ -1,0 +1,191 @@
+
+<div class="m2">
+    <mat-toolbar>
+      Edit Employee Details 
+    </mat-toolbar>
+</div>
+<div style="padding-left:50px ;">
+
+   
+    <div class="card-body">
+        
+                <form [formGroup]="registerForm" >
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="Employee Id" name="userId" readonly formControlName="userId">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Emoloyee" name="roleId" readonly formControlName="roleId">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let role of roles" [value]="role.roleId">{{role.roleName}}
+
+
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="First Name" name="firstName" formControlName="firstName">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class=" col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="Last Name" name="lastName" formControlName="lastName">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class=" col-3">
+                        <br>
+                        <mat-radio-group class="example-radio-group" name="gender" formControlName="gender">
+                            <mat-radio-button>Male&nbsp;&nbsp;</mat-radio-button>
+                            <mat-radio-button>Female</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput [max]="maxDate" [matDatepicker]="picker" placeholder="Date of Birth"
+                                formControlName="dob">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="Address" name="address1" formControlName="address1">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-3">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Country" name="countryId" formControlName="countryId">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let country of countries"
+                                    [value]="country.countryId">{{country.countryName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <mat-select placeholder="Select State" name="stateId" formControlName="stateId" (valueChange)="getcityListByChangeStateId()">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let state of states" [value]="state.stateId">{{state.stateName}}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <mat-select placeholder="Select City" name="cityId" formControlName="cityId">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let city of cities" [value]="city.cityId">{{city.cityName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <mat-label>Door Number</mat-label>
+                            <input matInput placeholder="Door Number" name="doorNumber"
+                                formControlName="doorNumber">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="Street" name="street" formControlName="street">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="PIN Code" name="pinCode" formControlName="pinCode">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+
+                            <input type="tel" matInput placeholder="Mobile Number" name="mobileNumber"
+                                formControlName="mobileNumber">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+
+                            <input type="tel" matInput placeholder="Alternative Number" name="alternativeNumber"
+                                formControlName="alternativeNumber">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="Aadhar Number" name="aadharNumber"
+                                formControlName="aadharNumber">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="Email Id" name="emailId" formControlName="emailId">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <mat-label>Bank Name</mat-label>
+                            <mat-select placeholder="Select Bank" name="adminBankId" formControlName="adminBankId">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    
+
+                    <div class="col-3">
+                        <mat-form-field>
+                            <mat-label>Account Number</mat-label>
+                            <input matInput placeholder="Account Number" name="accountNumber"
+                                formControlName="accountNumber">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-3">
+                        <mat-form-field>
+                            <mat-label>IFSC Code</mat-label>
+                            <input matInput placeholder="IFSC Code" name="ifscCode" formControlName="ifscCode">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="Branch Name" name="branchName"
+                                formControlName="branchName">
+                            <mat-error>Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                   <br>
+                  <button (click)="update()" mat-raised-button color="primary"> Update</button>
+                </form>
+               
+          
+       
+    </div>
+</div>
+  

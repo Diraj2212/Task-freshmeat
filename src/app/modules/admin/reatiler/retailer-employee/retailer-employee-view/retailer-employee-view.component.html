@@ -1,0 +1,34 @@
+<h1>Employee Details</h1>
+
+<h2>Store Details :</h2>
+<p>Store id : <span class="value">{{empDetails.storeId}} </span></p>
+<p>Store Type : <span class="value">{{empDetails.path}} </span></p>
+<p>Role Name : <span class="value">{{empDetails.roleName}} </span></p>
+
+<p></p>
+<h2>Personal Details :</h2>
+<p>Employee_Id : <span class="value">{{empDetails.id}} </span></p>
+<p>Employee Name: <span class="value">{{empDetails.firstName}} {{empDetails.lastName}}</span></p>
+<p>MobileNumber : <span class="value">{{empDetails.mobileNumber}} </span></p>
+<p>Alternat mob-number : <span class="value">{{empDetails.id}} </span> </p>
+<p>Email Id : <span class="value">{{empDetails.emailId}} </span></p>
+<p>Date Of Birth : <span class="value">{{empDetails.dob | date : 'dd-MM-yyyy'}} </span></p>
+<p> Aadhar Number : <span class="value">{{empDetails.aadharNumber}} </span></p>
+<p>Pan Number : <span class="value">{{empDetails.panNumber}} </span></p>
+<p></p>
+<h2>Bank Details</h2>
+<p>Bank Name : <span class="value">{{empDetails.bank}} </span></p>
+<p>Bank Branch : <span class="value">{{empDetails.branchName}} </span> </p>
+<p>Account Number : <span class="value">{{empDetails.accountNumber}} </span></p>
+<p>Bank Id : <span class="value">{{empDetails.bankId}} </span></p>
+<p>Ifsc Code : <span class="value">{{empDetails.ifscCode}} </span></p>
+<p></p>
+<p></p>
+
+<h2>Address Details</h2>
+<p>Door Number :  <span class="value">{{empDetails.doorNumber}} </span></p>
+<p>Area : <span class="value">{{empDetails.addressDomainV1.address1 + empDetails.addressDomainV1.address2}} </span></p>
+<p>city : <span class="value">{{empDetails.cityId}} </span> </p>
+<p>State : <span class="value">{{empDetails.state  }} </span></p>
+<p>Country : <span class="value">{{empDetails.country  }}</span></p>
+<p>PinCode : <span class="value">{{empDetails.pinCode}} </span> </p>

@@ -1,0 +1,304 @@
+<div class="m2">
+    <mat-toolbar>
+        Edit Employee
+    </mat-toolbar>
+</div>
+<div style="padding-left:50px ;">
+
+
+    <div class="card-body">
+        <form [formGroup]="UpdateEmployee" (ngSubmit)="submit()">
+            <mat-stepper [linear]="isLinear" #stepper>
+
+                <mat-step [stepControl]="basicInfoForm">
+                    <div formGroupName="basicInfoForm">
+                        <ng-template matStepLabel>Fill Basic Info</ng-template>
+                        <div class="row no-gutters">
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Employee Id</mat-label>
+                                    <input matInput placeholder="EmployeeId" name="id" formControlName="id"
+                                        [(ngModel)]="user.id">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Store Id</mat-label>
+                                    <input matInput placeholder="Store ID" name="storeId" formControlName="storeId"
+                                        [(ngModel)]="user.storeId">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Employee Role</mat-label>
+                                    <mat-select placeholder="Select Emoloyee" name="roleId" formControlName="roleId"
+                                        [(ngModel)]="user.roleId" (selectionChange)="displayStoreBasedOnRoleChange()">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleId">{{role.roleName}}
+                                        </mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="First Name" name="firstName"
+                                        formControlName="firstName" [(ngModel)]="user.firstName">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class=" col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput placeholder="Last Name" name="lastName" formControlName="lastName"
+                                        [(ngModel)]="user.lastName">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class=" col-3">
+                                <br>
+                                <mat-radio-group class="example-radio-group" name="genderId" formControlName="genderId"
+                                    [(ngModel)]="user.genderId" appearance="fill">
+                                    <mat-radio-button [value] =1>Male&nbsp;&nbsp;</mat-radio-button>
+                                    <mat-radio-button [value]=2>Female</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+
+                        <div class="row no-gutters">
+
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Date of Birth</mat-label>
+                                    <input matInput [max]="maxDate" [matDatepicker]="picker" placeholder="Date of Birth"
+                                        formControlName="dateOfBirth" [(ngModel)]="user.dob">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Address</mat-label>
+                                    <input matInput placeholder="Address" name="address1" formControlName="address1"
+                                        [(ngModel)]="user.addressModel.address1">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-3" appearance="fill">
+                                <mat-form-field>
+                                    <mat-label>Country</mat-label>
+                                    <mat-select placeholder="Select Country" name="countryId"
+                                        formControlName="countryId" [(ngModel)]="user.addressModel.countryId">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let country of countries"
+                                            [value]="country.countryId">{{country.countryName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>State</mat-label>
+                                    <mat-select placeholder="Select State" name="stateId" formControlName="stateId"
+                                        [(ngModel)]="user.addressModel.stateId"
+                                        (selectionChange)="displayStateBasedOnCountryChange()">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let state of states"
+                                            [value]="state.stateId">{{state.stateName}}
+                                        </mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class=" row no-gutters">
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>City</mat-label>
+                                    <mat-select placeholder="Select City" name="cityId" formControlName="cityId"
+                                        [(ngModel)]="user.addressModel.cityId">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let city of cities" [value]="city.cityId">{{city.cityName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+
+                                    <mat-label>Door Number</mat-label>
+                                    <input matInput placeholder="Door Number" name="doorNumber"
+                                        formControlName="doorNumber" [(ngModel)]="user.addressModel.doorNumber">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Street</mat-label>
+                                    <input matInput placeholder="Street" name="street" formControlName="street"
+                                        [(ngModel)]="user.addressModel.street">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <mat-label>Pincode</mat-label>
+                                    <input matInput placeholder="PIN Code" name="pinCode" formControlName="pinCode"
+                                        [(ngModel)]="user.addressModel.pinCode">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <mat-label>Mobile Number</mat-label>
+
+                                    <input type="tel" matInput placeholder="Mobile Number" name="mobileNumber"
+                                        formControlName="mobileNumber" [(ngModel)]="user.mobileNumber">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <mat-label>Alternative Number</mat-label>
+                                    <input type="tel" matInput placeholder="Alternative Number" name="alternativeNumber"
+                                        formControlName="alternativeNumber" [(ngModel)]="user.alternativeNumber">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <mat-label>Aadhar Number</mat-label>
+                                    <input matInput placeholder="Aadhar Number" name="aadharNumber"
+                                        formControlName="aadharNumber" [(ngModel)]="user.aadharNumber">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <mat-label>Email </mat-label>
+                                    <input matInput placeholder="Email Id" name="emailId" formControlName="emailId"
+                                        [(ngModel)]="user.emailId">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div>
+                                <button mat-raised-button type="button" color="primary" matStepperNext>Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-step>
+
+                <mat-step [stepControl]="bankInfoForm">
+                    <div formGroupName="bankInfoForm">
+                        <ng-template matStepLabel>Fill out Your Bank Details</ng-template>
+                        <br>
+                        <div class="row no-gutters">
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <mat-label>Bank Name</mat-label>
+                                    <mat-select placeholder="Select Bank" name="adminBankId"
+                                        formControlName="adminBankId" [(ngModel)]="user.bankModel[0].adminBankId">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <mat-label>Account Number</mat-label>
+                                    <input matInput placeholder="Account Number" name="accountNumber"
+                                        formControlName="accountNumber" [(ngModel)]="user.bankModel[0].accountNumber">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <mat-label>IFSC Code</mat-label>
+                                    <input matInput placeholder="IFSC Code" name="ifscCode" formControlName="ifscCode"
+                                        [(ngModel)]="user.bankModel[0].ifscCode">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <input matInput placeholder="Branch Name" name="branchName"
+                                        formControlName="branchName" [(ngModel)]="user.bankModel[0].branchName">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-3">
+                                <mat-form-field>
+                                    <input matInput placeholder="PAN Number" name="panNumber"
+                                        formControlName="panNumber" [(ngModel)]="user.bankModel[0].panNumber">
+                                    <mat-error>Field is required</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <section>
+                            <div class="form-button">
+                                <button mat-raised-button type="button" color="primary"
+                                    matStepperPrevious>Back</button>&nbsp;
+                                <button mat-raised-button type="button" color="accent" matStepperNext>Next</button>
+                            </div>
+                        </section>
+                    </div>
+                </mat-step>
+
+                <mat-step [stepControl]="uploadForm">
+                    <div formGroupName="upload">
+                        <ng-template matStepLabel>upload Files</ng-template>
+                        <br>
+                        <div class="row no-gutters">
+                            <div class="col-4">
+                                <span>Bank Passbook</span>
+
+                                <br>
+                                <input type='file' (change)="onSelectFile($event)">
+                            </div>
+                            <div class="col-4">
+                                <span>Aadhar</span>
+                                <br>
+                                <input type='file' (change)="onSelectFile($event)">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-sm-12">
+                            <div class="form-group text-center">
+                                <mat-radio-group class="example-radio-group" name="approve" formControlName="terms">
+                                    <mat-radio-button class="example-radio-button" [value]="approve">
+                                        I accept <a href>Terms and condition</a>
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div><br>
+                            <section>
+                                <div class="form-button">
+                                    <button mat-raised-button type="button" color="primary"
+                                        matStepperPrevious>Back</button>&nbsp;
+                                    <button mat-raised-button type="submit" color="accent"
+                                        matStepperNext>Submit</button>&nbsp;&nbsp;&nbsp;
+                                        <button mat-raised-button  type="button" (click)= closePopup()
+                                         color="accent"  matStepperNext >close</button>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </mat-step>
+            </mat-stepper>
+        </form>
+    </div>

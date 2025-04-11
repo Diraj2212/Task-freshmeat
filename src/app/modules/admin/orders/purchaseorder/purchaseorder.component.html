@@ -1,0 +1,59 @@
+<div id="contentToConvert">
+
+    <div class="container1" id="purchaseOrderComponent">
+      <div class="container">
+  
+        <h1> Retailer Purchase Order History</h1><span></span>
+  
+        <button mat-button style="width:16%; background-color: blue; color: white; 
+      margin-left: 2%;" routerLink="../raisepo">Raise PO Request</button><br>
+      </div>
+  <div>&nbsp;</div>
+   
+
+    <table> <!-- style="margin-top:20px;margin-bottom:20px; Line-height: 20.13px; 
+      border:1px solid  rgb(19, 73, 153,0.2);  text-align: left;font-size: 15px;
+      font-family: poppins; font-weight: bold;"-->
+       <thead style=" Line-height: 20.13px; border:1px solid  rgb(19, 73, 153,0.2);  
+       text-align: left;font-size: 15px;font-family: poppins;
+        font-weight: bold;color:#5020d4;">
+          <tr>
+                   
+    <th>Sl No</th>
+    <th> Order Date</th>
+    <th>Purhcased-Order Id</th>
+    <th>Warehouse Id</th>
+    <th>Total Amount</th>
+    <th>Order Status</th>
+    <th>Action</th>
+  </tr></thead>
+
+
+  <tr  style="background-color: white; font-family: Poppins;font-weight: 200;font-size:14px;color:black;" *ngFor="let element of list;let i =index" >
+
+    <td>{{i+1}}</td>
+    <td>{{ element.createdDate }}</td>
+    <td>{{ element.orderId }}</td>
+    <td>{{ element.warehouseId }}</td>
+    <td>{{ element.totalAmount }}</td>
+    <td>{{ element.orderStatus }}</td>
+         <td>
+                <button mat-icon-button style="color: #25AE88;"
+                routerLink="../POSummary/{{element.orderId}}" class="material-symbols-outlined" >
+               <!-- (click)="openPOSummary(element.orderId)"> -->
+                    <!--  routerLink="../POSummary?orderId={{element.orderId}}">-->
+                    visibility
+                </button>
+            </td>
+ </tr></table>
+  
+    <!--  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+  
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  

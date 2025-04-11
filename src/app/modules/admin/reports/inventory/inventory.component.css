@@ -1,0 +1,134 @@
+/* Container for table to allow horizontal scrolling if needed .container {
+    overflow-x: auto;
+    padding: 16px;
+}
+
+
+.mat-header-cell {
+    color: white;
+    background-color: rgb(0, 115, 115);
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+    white-space: nowrap;
+
+}
+
+.mat-cell {
+    padding: 8px;
+    text-align: center;
+    white-space: nowrap;
+
+}
+
+
+.mat-column-stockId,
+.mat-column-warehouseId,
+.mat-column-productName,
+.mat-column-stockIn,
+.mat-column-stockOut,
+.mat-column-availableQuantity,
+.mat-column-createdDate,
+.mat-column-modifiedDate,
+.mat-column-packedDate,
+.mat-column-expiryDate,
+.mat-column-myDiscount,
+.mat-column-quality,
+.mat-column-purchasePrice,
+.mat-column-sellingPrice,
+.mat-column-batchNo,
+.mat-column-docCertified,
+.mat-column-shelveNo,
+.mat-column-stockValue,
+.mat-column-categoriesTypeId,
+.mat-column-subCategoriesId,
+.mat-column-openingStock,
+.mat-column-closingStock {
+    width: auto;
+    min-width: 5px;
+
+}
+
+.mat-table {
+    width: 120%;
+    overflow-x: auto;
+    overflow-y: auto;
+
+}
+
+.mat-header-row,
+.mat-row {
+    display: table-row;
+} */
+
+
+/* Container for table to allow horizontal scrolling if needed */
+.container {
+    overflow-x: auto;
+    padding: 16px;
+}
+
+/* Styling for header cells */
+.mat-header-cell {
+    color: white;
+    background-color: rgb(0, 115, 115);
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+    white-space: nowrap;
+}
+
+/* Styling for table cells */
+.mat-cell {
+    padding: 8px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Ensure columns have a minimum width */
+.mat-column-stockId,
+.mat-column-storeId,
+.mat-column-productName,
+.mat-column-stockIn,
+.mat-column-stockOut,
+.mat-column-availableQuantity,
+.mat-column-createdDate,
+.mat-column-modifiedDate,
+.mat-column-packedDate,
+.mat-column-expiryDate,
+.mat-column-myDiscount,
+.mat-column-quality,
+.mat-column-purchasePrice,
+.mat-column-sellingPrice,
+.mat-column-batchNo,
+.mat-column-docCertified,
+.mat-column-shelveNo,
+.mat-column-stockValue,
+.mat-column-categoriesTypeId,
+.mat-column-subCategoriesId,
+.mat-column-openingStock,
+.mat-column-closingStock,
+.mat-column-action {
+    min-width: 120px;
+    /* Adjust this value as needed for your columns */
+}
+
+/* Ensure table width is fully visible */
+.mat-table {
+    width: 100%;
+    display: block;
+    /* Ensures the table respects width */
+}
+
+/* Ensures rows are displayed correctly */
+.mat-header-row,
+.mat-row {
+    display: table-row;
+}
+
+/* Add styling for table container to ensure full visibility */
+.container .mat-table {
+    width: 100%;
+    min-width: 1200px;
+    /* Adjust this value based on your table's total width */
+}

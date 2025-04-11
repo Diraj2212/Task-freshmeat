@@ -1,0 +1,82 @@
+<h1>ORDER</h1>
+<form action="" >
+   
+    <div class="selectors ">
+    <mat-form-field appearance="fill">
+      <mat-label>Select Retailer</mat-label>
+      <mat-select [(ngModel)]="selectedRetailer" (selectionChange)="onSelectionChange($event)"  name="food">
+        <mat-option *ngFor="let names of retailers" [value]="names.id">
+          {{names.firstName}}
+        </mat-option>
+  
+      </mat-select>
+    
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="selectedStatus" (selectionChange)="onStatusChange($event)"  name="food">
+        <mat-option *ngFor="let status of statusList" [value]="status">
+          {{status}}
+        </mat-option>
+  
+      </mat-select>
+    
+    </mat-form-field>
+  
+   
+   
+  </div>
+  
+    
+  
+     
+     
+        <table >
+  
+          <thead id="a1">
+            <th>Index</th>
+           <th>Order Id</th>
+           <th>Order Date</th>
+           <th>Customer Name</th>
+           <th>Customer id</th>
+           <th>Order Status</th>
+           <th>Action</th>
+           
+          </thead>
+          <tbody>
+            
+
+            <ng-container *ngFor="let list of completeDetails;let i=index;">
+              <tr >
+               <td>{{i+1}}</td>
+               <td>{{list.orderId}}</td>
+               <td>{{list.createdDate| date:'dd-MM-yyyy' }}</td>
+               <td>{{list.firstName}}</td>
+               <td>{{list.userId}}</td>
+               <td>{{list.orderStatus}}</td>
+               <td><button routerLink="../product/{{list.orderId}}/{{list.userId}}" ><mat-icon>visibility </mat-icon></button></td>
+                
+              
+              </tr>
+            </ng-container>
+
+          </tbody>
+       
+          
+         
+   
+         </table>
+         <mat-divider vertical="true"></mat-divider>
+        
+        <mat-paginator [length]="order.length"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 50]"
+                aria-label="Select page">
+        </mat-paginator>
+  
+        
+        
+        
+   
+  
+  </form>

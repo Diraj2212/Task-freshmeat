@@ -1,0 +1,126 @@
+.mat-toolbar{
+    padding-right: 16px;
+    padding-left: 16px;
+    background-color: #00897B;
+    background-image: -webkit-gradient(linear, left top, right top, from(#00897B), to(#004D40));
+    background-image: -webkit-linear-gradient(to right, #00897B, #004D40);
+    background-image: -moz-linear-gradient(to right, #00897B, #004D40);
+    background-image: -ms-linear-gradient(to right, #00897B, #004D40);
+    background-image: -o-linear-gradient(to right, #00897B, #004D40);
+    background-image: linear-gradient(to right, #00897B, #004D40);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00897B", endColorstr="#004D40", gradientType="1");
+    color: white; 
+    height: 100px;
+  }
+
+  .mat-button{
+    color: white;
+  }
+  @media screen and (max-width:600px){
+    .sidenav.responsive {position: relative;}
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .spacer {
+   margin-left: 15px;
+  }
+  
+  .profile {
+    font-size: 18px;
+    color:  white;
+   
+  }
+  .imag {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .head{
+    color: white;
+    margin-right: 10px;
+    white-space: pre-line;
+  }
+  
+  .fixed-header
+  {
+     position: sticky;
+     z-index: 999;
+  }
+  .topHead
+  {
+    height:100%;
+    padding: 25px 50px;
+    padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    background-color: white;
+   
+  }
+  .matClr
+  {
+    background-color: #f2f2f2;
+    padding: 0px;
+    height:100%;
+  }
+
+  .topSize
+  {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .tool-bar-menu{
+    /* flex: 1 1 auto; */
+    padding: 0;
+  }
+  .userProfile{
+    margin-right: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.user-profile-info{
+    text-align: left;
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 14px;
+    vertical-align: top;
+    font-size: 16px;
+    /* color: rgba(255, 255, 255, 0.72); */
+    color: white;
+}
+.user-profile-name{
+  display: block;
+  font-weight: 700;
+}
+.user-profile-role{
+  display: inline-block;
+    opacity: 0.72;
+ 
+}
+ .mat-menu{
+    position: absolute;
+    z-index: 1000;
+    top: 90px;
+    right: 50px;
+    width: 250px;
+    background-color: #ffffff;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 2px;
+    animation-duration: 0.3s;
+    /* -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3); */
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+
+}
+
+.link,.link:hover{
+
+  cursor: pointer;
+}
+
+  

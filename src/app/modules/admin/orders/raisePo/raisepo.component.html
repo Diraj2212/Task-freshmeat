@@ -1,0 +1,469 @@
+<div id="raisePOComponent">
+     <div class="row">
+        <div class="col mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+            <div class="col">
+                  <h2 class="mb-0" style="color: #F12D97;font-weight: italic;">Purchase Order </h2>
+                </div>
+            
+              </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+
+    <mat-horizontal-stepper  labelPosition="bottom" [linear]="isLinear" #stepper><!-- (selectionChange)="selectionChange($event)-->
+        <mat-step label="Step 1" style="background-color: #ec4e20;">
+          <ng-template matStepLabel>Purchase Order Details</ng-template>
+   
+            <form [formGroup]="POForm"  >
+              <div> <span style="margin-top:40px;"></span></div>
+              <div class="row">
+
+                <div class="col-md-2">
+                   <label name ="Date" style="font-weight: bold;font-size: 15px;">Date  (dd/mm/yyyy)</label>
+                  </div>
+                  <div class="col-md-2">
+                    
+                  <label name ="dateValue" >{{currDate}}</label>
+                 </div>
+                  </div>
+                  <span style="margin-top:40px;"></span>
+                  <div class="row">
+
+                    <div class="col-md-2">
+                  
+                <!--<mat-form-field>-->
+                  <label name="Select Warehouse" style="font-weight: bold;font-size: 15px;">Select Warehouse: </label>
+                  </div>
+                  <div class="col-md-2">
+              
+                    <select placeholder="Select Warehouse" 
+                    formControlName="warehouseId"  (change)="onWarehouseSelect()">
+                <!--</mat-select> [(ngModel)] = "user.addressModel.countryId">-->
+                        
+                        <option *ngFor="let warehouse of warehouseList"
+                            [value]="warehouse.wareHouseId">{{warehouse.wareHouseName}}
+                        </option>
+                    </select><span></span>
+                   </div>
+                    </div>
+                    <div class="row">
+                    <button [disabled]="this.isOrderPlaced" style="width:120px;margin-top:20px;margin-left:60%;" (click)="addRow()">
+                      Add Row</button>
+                 </div>
+                <!--</mat-form-field> -->
+            
+          
+            <div formArrayName="rows">
+            <table style="margin-top:20px;margin-bottom:20px; Line-height: 20.13px; 
+            border:1px solid  rgb(19, 73, 153,0.2);  text-align: left;font-size: 15px;
+            font-family: poppins; font-weight: bold;color:#5020d4;">
+                <thead>
+                  <tr style=" Line-height: 20.13px; border:1px solid  rgb(19, 73, 153,0.2);  text-align: left;font-size: 15px;font-family: poppins; font-weight: bold;color:#5020d4;">
+                    <th width="15%" >Category Type</th>
+                    <th width="15%">Category Name</th>
+                    <th width="15%">Subcategory Name</th>
+                    <th width="15%">Product Name</th>
+                  <!--  <th>SubCategoryId</th> -->
+                    <th width="4%">Unit Price</th>
+                    <th width="4%">FM Discount</th>
+                    <th width="4%">Discounted Unit Price</th>
+                    <th width="4%">Quantity</th>
+                    <th width="4%">Total Price(Quantity*Discounted UnitPrice)</th>
+                    
+                    <th width="4%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of rows.controls; let i = index;" [formGroupName]="i">
+
+                    <td width="15%" style="box-sizing: border-box;"><!--[(ngModel)]="row.categoryTypeId"-->
+                        <select formControlName="categoryTypeId" 
+                        (change)="onCategoryTypeChange(i)">
+                          <option *ngFor="let option of  row.get('categoryTypeList')?.value"
+                          [value]="option.categoryTypeId">{{ option.categoryTypeName}}</option>    <!--row.get('categoryList')?.value"-->
+                        </select>
+                        <input formControlName="categoryTypeName" type="hidden">
+                      </td>
+
+                    <td  width="15%" style="box-sizing: border-box;">
+                      <select  formControlName="categoryId" (change)="onCategoryChange(i)">
+                        
+                        <option *ngFor="let option of row.get('categoryList')?.value" [value]="option.categoryId">{{ option.categoryName }}</option>
+                            <!-- Hidden Fields -->
+                            <input formControlName="categoryName" type="hidden">
+        
+                      </select><!--row.get('categoryList')?.value"-->
+                    </td> 
+
+                    <td  width="15%" style="box-sizing: border-box;">
+                      <select  formControlName="subcategoryId" (change)="onSubcategoryChange(i)">
+                        <option *ngFor="let option of row.get('subcategoryList')?.value" [value]="option.subCategoryId">{{ option.subCategoryName }}</option>
+                            <!-- Hidden Fields -->
+                            <input formControlName="subcategoryName" type="hidden">
+        
+                      </select><!--row.get('categoryList')?.value"-->
+                    </td>
+
+                    <td width="15%" style="box-sizing: border-box;">
+                        <select   formControlName="productId" (change)="onProductChange(i)" >
+                          <option *ngFor="let option of row.get('productList')?.value" [value]="option.productId">{{ option.productName }}</option>
+                        </select>
+                        <input formControlName="productName" type="hidden">
+                       <!--<input formControlName="productDescription" type="hidden"> -->
+                      </td><!--row.get('productList')?.value"-->
+                      <td style="width:4%">
+                        <input style=" width: 80px;" type="text" 
+                       readonly formControlName="unitPrice"><!-- (input)="onInputChange()"-->
+                      </td>
+                      <td style="width:4%">
+                        <input  style=" width: 80px;" type="text" 
+                       readonly formControlName="fmDiscount" >
+                      </td><!--  value="rows.get('fmDiscount')?.value"-->
+                      <td style="width:4%">
+                        <input  style=" width: 80px;" type="text"
+                        readonly formControlName="discountedUnitPrice" >
+                      </td>
+                    <td style="width:4%">
+                      <input style=" width: 80px;" type="number" min="1" formControlName="quantity" 
+                       (input)="onInputChange(i)"><!-- (input)="onInputChange()"-->
+                    </td>
+                      <td style="width:4%">
+                        <input style=" width: 80px;" type="text" 
+                                    readonly formControlName="discountedTotalPrice" >
+                      </td>
+                    <td>
+                      <button *ngIf="rows.length > 0" [disabled]="this.isOrderPlaced" (click)="removeRow(i)"> Remove </button>
+                    </td>
+                  </tr>
+
+                  <tr *ngIf="rows.length > 1">
+                    <td colspan="6"></td>
+                    <td style="font-weight:bold;font-size:16;color:#014487">Net Total = </td><td>{{totalPrice}}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+             </div>
+              <button [disabled]="this.isOrderPlaced" (click)="onCancel()"> Cancel </button>
+              <span style="margin-left:40px;"></span>
+              <button [disabled]="this.isOrderPlaced" style="width:100px;background-color:#014487;border-color:#014487;
+              color:white;font-weight:500; letter-spacing:0.015em;font-family: Poppins;"  matStepperNext (click)="setRows(rows)"> Next</button>
+            </form>
+        </mat-step>
+        
+        <mat-step label="Step 2" style="color: #014487;">
+            <ng-template matStepLabel style="color: #014487;">Order Summary</ng-template>
+            <div class="container mt-5"  style="color: #014487;">
+            <table width="100%" style="background-color:whitesmoke;color: black;border: 1px;" >
+              <!--*ngIf="this.rows.length > 0 "-->
+               
+                    <thead>
+                      <tr>
+                        <th>Category Type</th>
+                        <th>Category Name</th>
+                        <th>Subcategory Name</th>
+                        <th>Product Name</th>
+                      <!--  <th>SubCategoryId</th> -->
+                        <th>Unit Price</th>
+                        <th>FM Discount</th>
+                        <th>Discounted Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price(Quantity*Discounted UnitPrice)</th>
+                        
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr height="30px" style="margin-top:20px;border: 1px;" *ngFor="let row of rowData">
+                            <td> {{row.categoryTypeName}}</td>
+                            <td>{{row.categoryName}}</td>
+                            <td>{{row.subcategoryName}}</td>
+                            <td>{{row.productName}}</td>
+                            <td>{{row.unitPrice}}</td>
+                            <td>{{row.fmDiscount}}</td>
+                            <td>{{row.discountedUnitPrice}}</td>
+                            <td>{{row.quantity}}</td>
+                            <td>{{row.discountedTotalPrice}}</td>
+                            </tr>
+                            <tr colspan="7"><td></td></tr>
+                            <tr colspan="7"><td></td></tr>
+                            <tr>
+                                <td colspan="7"></td>
+                                <td style="font-weight:bold;">Total amount:</td>
+                                <td style="font-weight:bold;">{{this.totalPrice}}</td>
+                            </tr>
+                    </tbody>
+                    
+            </table>
+            <button [disabled]="this.isOrderPlaced" routerLink="../raisepo">Cancel</button>
+            <span style="margin-left:40px;"></span>
+              
+            <button [disabled]="this.isOrderPlaced" style="width:100px;background-color:#014487;border-color:#014487;
+            color:white;font-weight:500; letter-spacing:0.015em;font-family: Poppins;"
+             matStepperNext> Next</button>
+            </div>
+        </mat-step>
+        <mat-step label="Step 3" style="color: #014487;">
+            <ng-template matStepLabel style="color: #014487;">Address Details</ng-template>
+
+            <div class="container mt-5"  style="color: #014487;">
+              <button label="showNewAddress"  (click)="toggleNewAddress()"
+               align="right" style=" color:#014487; width: 180px;margin-left:60%">
+                   Add New Address
+              </button>
+              <span style="margin-top:20px;"></span>
+              <div style="border: 1px solid hsl(210, 98%, 21%,0.2) ">
+                <span style="margin-top:20px;"></span>
+              <input type ="radio" id="firstAddress" name="firstAddress" 
+              style="width:30px;height:20px;text-align:right;color:#014487;font-weight: 500;
+              letter-spacing: 0.015em;font-family: Poppins;border-color:#014487" checked >
+                <b style="color:#014487;font-weight: 300;
+                letter-spacing: 0.015em;font-family: Poppins;" >
+
+<label *ngIf= 'this.user.addressDomainV1.doorNumber != null'>{{this.user.addressDomainV1.doorNumber}},</label>
+<label *ngIf= 'this.user.addressDomainV1.street != null'> {{this.user.addressDomainV1.street}}</label><br>
+<label *ngIf= 'this.user.addressDomainV1.address1 != null'><span style="margin-left: 5px;"></span>{{this.user.addressDomainV1.address1 }}</label><br>
+<label *ngIf= 'this.user.addressDomainV1.address2 != null'><span style="margin-left: 5px;"></span>{{this.user.addressDomainV1.address2 }} </label><br>
+<label *ngIf= 'city != null'>    <span style="margin-left: 5px;"></span>  {{city}}, </label>
+  <label *ngIf= 'state != null'> {{state}}</label><br>
+    <label *ngIf= 'country != null'> <span style="margin-left: 5px;"></span>{{country}} - </label>
+      <label *ngIf= 'this.user.addressDomainV1.pinCode != null'>  <span style="margin-left: 5px;"></span>{{this.user.addressDomainV1.pinCode}} . <br></label>
+      <br>
+      <span style="margin-left: 5px;"></span>Mobile: {{this.user.mobileNumber}}      
+            </b>
+          </div>
+        </div>
+<!--NEW ADDRESS FORM- TO BE DONE LATER-->
+            <!--
+            <div style="height:50px;"></div>
+      <div label="newAddress" [hidden]="!isShowDiv">
+      
+          <div class="row">
+            <div style="color: #014487;">
+                <b align="left;" style="color:#EC4E20;font-family: Poppins; font-weight: 300; 
+                font-size: 20px;letter-spacing: 0.15em;"> NEW ADDRESS </b>
+                
+               
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
+                <button label="showNewAddress"  (click)="toggleNewAddress()"
+                mat-icon-button  align="right" 
+                style=" color: rgb(230, 6, 6); height: 43px; width: 43px;text-align: right;">
+                <-
+                </button>
+                </div>
+          </div>
+          <br>
+          <form [formGroup]="addressform">
+            <div class="row">
+              <div class="col-3">
+                <mat-form-field appearance="fill">
+            <mat-label>Enter Receiver's Name</mat-label>
+            <input matInput placeholder="First Name" formControlName="firstName"  required>
+            <mat-error *ngIf="addressform.get('firstName').hasError('required')">
+                 Name is Required!
+              </mat-error>
+              <mat-error *ngIf="addressform.get('firstName').hasError('minlength')">
+                 Name should be atleast 4 characters long!
+              </mat-error>
+          
+              <mat-error *ngIf="addressform.get('firstName').hasError('maxlength')">
+                 Name can be atmax n characters long!
+              </mat-error>
+          
+              <mat-error *ngIf="addressform.get('firstName').hasError('pattern')">
+                 Name must follow this pattern starts with capital letter!
+              </mat-error>
+            </mat-form-field>
+         </div>
+          <div class="col-3">
+            <mat-form-field appearance="fill">
+            <mat-label>Mobile number</mat-label>
+            <input matInput placeholder="Mobile Number" (keypress)="OnlyNumbers($event)"  maxlength="10" minlength ="10" formControlName="mobileNumber">
+            <mat-error *ngIf="addressform.get('mobileNumber').hasError('required')">
+                Required 10 digit Mobile Number!
+              </mat-error>
+              <mat-error *ngIf="addressform.get('mobileNumber').hasError('pattern')">
+                Please Enter valild Mobile Number!
+              </mat-error>
+            </mat-form-field>
+            </div>
+
+         <div class="col-3">
+            <mat-form-field appearance="fill">
+            <mat-label>Alternative Number</mat-label>
+            <input matInput placeholder="Alternative Number" (keypress)="OnlyNumbers($event)"  maxlength="10" minlength ="10"  formControlName="alternativeNumber"  required>
+            <mat-error *ngIf="addressform.get('alternativeNumber').hasError('required')">
+                Required 10 digit Alternative Mobile Number!
+              </mat-error>
+              <mat-error *ngIf="addressform.get('alternativeNumber').hasError('pattern')">
+               Please Enter valid Alternative Mobile Number!
+              </mat-error>
+           </mat-form-field>
+          </div>
+        </div>
+           <div class="row">
+            <div class="col-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Address" formControlName="address1"  required>
+                <mat-error *ngIf="addressform.get('address1').hasError('required')">
+                  Address is Required!
+                 </mat-error>
+                <mat-error *ngIf="addressform.get('address1').hasError('pattern')">
+                  Please Enter valid Address!
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Select Country</mat-label>
+                <mat-select formControlName="countryId" (selectionChange)="getStateBycId()">
+                  <mat-option *ngFor="let country of country" 
+                  value={{country.countryId}}>{{country.countryName}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addressform.get('countryId').hasError('required')">
+                  Country is required!
+                 </mat-error>
+                            </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Select State</mat-label>
+                <mat-select formControlName="stateId" (selectionChange)="getCitiesBysId()">
+                  <mat-option *ngFor="let state of state"
+                  value={{state.stateId}}>{{state.stateName}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addressform.get('stateId').hasError('required')">
+                  State is Required!
+                 </mat-error>
+                
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Select City</mat-label>
+                <mat-select formControlName="cityId">
+                  <mat-option *ngFor="let city of city" value={{city.cityName}}>{{city.cityName}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addressform.get('cityId').hasError('required')">
+                  City is Required!
+                 </mat-error>
+                        </mat-form-field>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <mat-form-field appearance="fill">
+                  <mat-label>Door no</mat-label>
+                  <input matInput placeholder="Door Number" formControlName="doorNumber"  required>
+                  <mat-error *ngIf="addressform.get('doorNumber').hasError('required')">
+                    Door Number is Required!
+                   </mat-error>
+                  
+                  <mat-error *ngIf="addressform.get('doorNumber').hasError('pattern')">
+                   Please Enter valid Door Number!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance="fill">
+                  <mat-label>Street</mat-label>
+                  <input matInput placeholder="Street" formControlName="street"  required>
+                  <mat-error *ngIf="addressform.get('street').hasError('required')">
+                    Street is Required!
+                   </mat-error>
+                  
+                  <mat-error *ngIf="addressform.get('street').hasError('pattern')">
+                    Please Enter valid Street Name!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance="fill">
+                  <mat-label>Pin Code</mat-label>
+                  <input  matInput  placeholder="Pincode" (keypress)="OnlyNumbers($event)"  maxlength="6" formControlName="pinCode"  required>
+                  <mat-error *ngIf="addressform.get('pinCode').hasError('required')">
+                    Pincode is Required!
+                   </mat-error> 
+                   
+                 <mat-error *ngIf="addressform.get('pinCode').hasError('pattern')">
+                  Please Enter valid Pincode!
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div -->
+
+
+          <button [disabled]="this.isOrderPlaced" routerLink="../raisepo">Cancel</button>
+          <span style="margin-left:40px;"></span>
+            
+          <button [disabled]="this.isOrderPlaced" style="width:100px;background-color:#014487;border-color:#014487;
+          color:white;font-weight:500; letter-spacing:0.015em;font-family: Poppins;"
+           matStepperNext> Next</button>
+
+        </mat-step>
+        <mat-step label="Step 4" style="color: #014487;">
+
+          <form [formGroup]="POForm"  >
+          <ng-template matStepLabel style="color: #014487;">Payment Mode</ng-template>
+
+          <div class ="container">
+            <div class ="card" style="height:500px;" >
+              <div> <span style="margin-top:20px;"></span></div>
+              <span style="margin-top:20px;"></span>
+                  <label style="white-space:nowrap;">
+              <input type ="radio" id="cash" formControlName="paymentOpt" value="card" 
+              style="width:90px;height:20px;text-align:right;color:#014487;font-weight: 500;
+              letter-spacing: 0.015em;font-family: Poppins;border-color:#014487" checked>Card
+              </label>
+              <span style="margin-top:20px;"></span>
+              <label style="white-space:nowrap;">
+             <input type ="radio" id="upi" formControlName="paymentOpt"  value="upi" 
+             style="width:90px;height:20px;text-align:right;color:#014487;font-weight: 500;
+             letter-spacing: 0.015em;font-family: Poppins;border-color:#014487" >UPI
+             </label>
+             <span style="margin-top:20px;"></span>
+             <label style="white-space:nowrap;">
+            <input type ="radio" id="bank"  formControlName="paymentOpt" value="bank" 
+            style="width:90px;height:20px;text-align:right;color:#014487;font-weight: 500;
+            letter-spacing: 0.015em;font-family: Poppins;border-color:#014487" >Bank Transfer
+            </label>
+            <span style="margin-top:20px;"></span>
+            <label style="white-space:nowrap;">
+           <input type ="radio"  formControlName="paymentOpt"  value="credits" 
+           style="width:90px;height:20px;text-align:right;color:#014487;font-weight: 500;
+           letter-spacing: 0.015em;font-family: Poppins;border-color:#014487" >Credits
+           </label>
+           <span style="margin-top:20px;"></span>
+
+          <span style="margin-left:40px;margin-top:20px;"></span>
+          <span style="margin-top:20px;"></span>
+          <button [disabled]="this.isOrderPlaced" style="width:150px;background-color:#014487;border-color:#014487;
+          color:white;font-weight:500; letter-spacing:0.015em;font-family: Poppins;" 
+          (click)="submit()"> Place Order</button>
+            </div>
+          </div>
+          </form>
+          </mat-step>
+        </mat-horizontal-stepper>
+            </div>
+            </div>
+
+
+           
+         

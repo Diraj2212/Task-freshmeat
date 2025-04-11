@@ -1,0 +1,25 @@
+table {
+
+    border-collapse: collapse;
+    background-color:whitesmoke;
+    color: black;
+       
+    width:100%;
+    height:0px;
+  }
+  
+  
+  td {
+    background-color: whitesmoke;
+    color:black;
+  }
+  
+  th {
+    text-align: left;
+    color:rgb(245, 243, 240);
+    background-color: #009879;
+  }
+  
+  tr:nth-child(even) {
+    background-color:whitesmoke;
+  }

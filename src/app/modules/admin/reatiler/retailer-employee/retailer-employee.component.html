@@ -1,0 +1,151 @@
+
+    <h1> Retailer Employee List</h1>
+    
+ 
+  <mat-form-field> 
+  <mat-label>Select Retailer</mat-label>
+    <mat-select [(ngModel)]="selectedretailer" (valueChange)="retailerChange($event)">
+
+        <mat-option *ngFor ="let retailers of retailerslist" [value] = "retailers.retailer_id"> 
+          {{retailers.proprietor_name}}</mat-option>
+        
+        
+    </mat-select>
+    
+</mat-form-field>
+<mat-tab-group>  
+  <mat-tab label="Active">
+    <table>
+    <tr>
+      <th>Index</th>
+      <th>Employee Id</th>
+      <th>Employee name</th>
+      <th>Email Address</th>
+      <th>Number</th>
+      <th>Role</th>
+      <th>Joining Date</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr> 
+     <tr>
+      <td>102</td>
+      <td>1224</td>
+      <td>Vipul</td>
+      <td>vvmgmail.com</td>
+      <td>8764335689</td>
+      <td>Store Manager</td>
+      <td>22/05/1998</td>
+      <td>Active</td>
+      <td class="empButtons">
+        <button class="a1" style="color: black;" routerLink="../retailerEmployeeDetails/{{1234}}" matTooltip="View Details" matTooltipPosition="above" ><mat-icon>visibility</mat-icon></button>
+        <button class="a2" style="color: black;" routerLink="../editRetailerEmployeeDetails/{{1234}}" matTooltip="Edit Details" matTooltipPosition="above"><mat-icon>edit</mat-icon></button>
+        <button class="a3" style="color: black;" matTooltip="Person Details" (click)=" updateEmployeeStatus(1263,true)" matTooltipPosition="above"><mat-icon>person</mat-icon></button>
+        </td>
+        </tr>
+        
+     <tr>
+      <td>103</td>
+      <td>1234</td>
+      <td>Rahul</td>
+      <td>rahgmail.com</td>
+      <td>2345672345</td>
+      <td>Store Executive</td>
+      <td>15/09/1989</td>
+      <td>InActive</td>
+      
+    </tr>
+
+    <tr *ngFor ="let list of ActiveEmployee"> 
+      <td></td>
+      <td>{{list.Employee_Id}}</td>
+      <td>{{list.Employee_name}}</td>
+      <td>{{list.Email}}</td>
+      <td>{{list.Role}}</td>
+      <td>{{list.Joining_date}}</td>
+      <td>{{list.status}}</td>
+      <td class="empButtons">
+        <button class="a1" style="color: black;" routerLink="../retailerEmployeeDetails/{{list.Employee_Id}}" matTooltip="View Details" matTooltipPosition="above" ><mat-icon>visibility</mat-icon></button>
+        <button class="a2" style="color: black;" routerLink="../editRetailerEmployeeDetails/{{list.Employee_Id}}" matTooltip="Edit Details" matTooltipPosition="above"><mat-icon>edit</mat-icon></button>
+        <button class="a3" style="color: black;"  (click)="updateEmployeeStatus(list.Employee_Id,list.status)"    matTooltip="Person Details" matTooltipPosition="above"><mat-icon>person</mat-icon></button>
+        </td>
+
+      
+    </tr>
+  </table>
+
+  <mat-paginator #paginator 
+  class= "demo-paginator"[length]="50"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 50]"showFirstLastButtons
+  aria-label="Select page">
+</mat-paginator>
+</mat-tab>
+  <mat-tab label="InActive">
+    <table>
+      <tr>
+        <th>Index</th>
+        <th>Employee Id</th>
+        <th>Employee name</th>
+        <th>Email Address</th>
+        <th>Number</th>
+        <th>Role</th>
+        <th>Joining Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr> 
+       <tr>
+        <td>102</td>
+        <td>1224</td>
+        <td>Vipul</td>
+        <td>vvmgmail.com</td>
+        <td>8764335689</td>
+        <td>Store Manager</td>
+        <td>22/05/1998</td>
+        <td>Active</td>
+        <td class="empButtons">
+          <button class="a1" style="color: black;"routerLink="../retailerEmployeeDetails/{{1234}}" matTooltip="View Details" matTooltipPosition="above" ><mat-icon>visibility</mat-icon></button>
+          <button class="a2" style="color: black;"routerLink="../editRetailerEmployeeDetails/{{1234}}" matTooltip="Edit Details" matTooltipPosition="above"><mat-icon>edit</mat-icon></button>
+          <button class="a3" style="color: black;" matTooltip="Person Details" (click)=" updateEmployeeStatus(1263,false)" matTooltipPosition="above"><mat-icon>person</mat-icon></button>
+          </td>
+          </tr>
+          
+       <tr>
+        <td>103</td>
+        <td>1234</td>
+        <td>Rahul</td>
+        <td>rahgmail.com</td>
+        <td>2345672345</td>
+        <td>Store Executive</td>
+        <td>15/09/1989</td>
+        <td>InActive</td>
+        
+       </tr>
+
+      <tr *ngFor ="let list of InactiveEmployee"> 
+        <td></td>
+        <td>{{list.Employee_Id}}</td>
+        <td>{{list.Employee_name}}</td>
+        <td>{{list.Email}}</td>
+        <td>{{list.Role}}</td>
+        <td>{{list.Joining_date}}</td>
+        <td>{{list.status}}</td>
+        <td class="empButtons">
+          <button class="a1" style="color: black;"routerLink="../retailerEmployeeDetails/{{1234}}" matTooltip="View Details" matTooltipPosition="above" ><mat-icon>visibility</mat-icon></button>
+          <button class="a2" style="color: black;"routerLink="../editRetailerEmployeeDetails/{{1234}}" matTooltip="Edit Details" matTooltipPosition="above"><mat-icon>edit</mat-icon></button>
+          <button class="a3" style="color: black;" matTooltip="Person Details" (click)=" updateEmployeeStatus(1263,true)" matTooltipPosition="above"><mat-icon>person</mat-icon></button>
+          </td>
+
+        
+      </tr>
+    </table>
+
+    <mat-paginator #paginator 
+    class= "demo-paginator"[length]="50"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 50]"showFirstLastButtons
+    aria-label="Select page">
+  </mat-paginator>
+  
+  </mat-tab>
+</mat-tab-group>  
+

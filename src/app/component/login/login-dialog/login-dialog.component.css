@@ -1,0 +1,14 @@
+.mat-form-field {
+    display: block;
+}
+.modal-size {
+    min-height:250px;
+    min-width:300px;
+}
+.color-button-close {
+    background: rgb(49, 0, 128)  !important ;
+   
+}
+mat-form-field{
+    width: 100%;
+}

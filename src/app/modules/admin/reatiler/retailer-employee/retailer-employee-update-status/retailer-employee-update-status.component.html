@@ -1,0 +1,12 @@
+<div class="active" *ngIf="status==true">
+    <h2>Do you want to make Employee  {{id}} as InActive ?</h2>
+   
+    <button #a1 mat-raised-button color="warn" (click)="changeEmployeeStatus()">Inavcitive</button>
+    <button  #a2 mat-raised-button color="secondary" mat-dialog-close>No</button>
+</div>
+<div class="inActive" *ngIf="status==false">
+    <h2>Do you want to make Employee {{id}} as Active ?</h2>
+   
+    <button #a1 mat-raised-button color="primary" (click)="changeEmployeeStatus()" >Active</button>
+    <button  #a2 mat-raised-button color="secondary" mat-dialog-close>No</button>
+</div>

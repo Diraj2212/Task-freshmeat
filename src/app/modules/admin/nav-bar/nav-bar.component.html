@@ -1,0 +1,207 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBaropen" #sidenav>
+    <mat-nav-list>
+      <div style="text-align: center">
+        <img
+          src="../assets/images/logo new/Log0-23.png"
+          alt=""
+          alt="company logo"
+        />
+      </div>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="./">
+        <span class="material-symbols-outlined" style="margin-right: 0.5rem">
+          home
+        </span>
+        Dashboard
+      </a>
+      <mat-divider></mat-divider>
+      <a
+        mat-list-item
+        routerLinkActive="list-item-active"
+        [matMenuTriggerFor]="menu1"
+      >
+        <span class="material-symbols-outlined"> insert_chart_outlined </span
+        >Reports
+        <span class="material-symbols-outlined"> arrow_drop_down </span>
+        <mat-menu #menu1="matMenu">
+          <button mat-menu-item routerLink="./inventory">
+            <span class="material-symbols-outlined"> person_pin_circle </span
+            >Inventory
+          </button>
+          <button mat-menu-item routerLink="./purchase">
+            <span class="material-symbols-outlined"> category </span>Purchase
+          </button>
+          <button mat-menu-item routerLink="./sales">
+            <span class="material-symbols-outlined"> cached </span>Sales
+          </button>
+          <button mat-menu-item routerLink="./expense-control">
+            <span class="material-symbols-outlined"> self_improvement </span
+            >Expense Control Report
+          </button>
+        </mat-menu>
+      </a>
+      <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+      <a
+        mat-list-item
+        routerLinkActive="list-item-active"
+        [matMenuTriggerFor]="menu2"
+      >
+        <span class="material-symbols-outlined"> person_pin </span>Employee
+        <span class="material-symbols-outlined"> arrow_drop_down </span>
+        <mat-menu #menu2="matMenu">
+          <button mat-menu-item routerLink="./addemployee">
+            <span class="material-symbols-outlined"> person_pin_circle </span
+            >Add Employee
+          </button>
+          <button mat-menu-item routerLink="./viewemployee">
+            <span class="material-symbols-outlined"> self_improvement </span
+            >View Employee
+          </button>
+        </mat-menu>
+      </a>
+
+      <mat-divider></mat-divider>
+      <a
+        mat-list-item
+        routerLinkActive="list-item-active"
+        [matMenuTriggerFor]="menu"
+      >
+        <span class="material-symbols-outlined" style="margin-right: 0.5rem">
+          business</span
+        >
+        Suppliers
+        <span class="material-symbols-outlined">arrow_drop_down</span>
+        <mat-menu #menu="matMenu">
+          <button
+            mat-menu-item
+           
+            routerLinkActive="router-link-active"
+          > <!-- [routerLink]="['/']" -->
+            <span class="material-symbols-outlined">Add </span>
+            Add Supplier
+          </button>
+
+                    <button mat-menu-item  routerLinkActive="router-link-active">
+
+                        <span class="material-symbols-outlined">
+                            visibility
+                        </span>View Suppliers</button>
+                </mat-menu>
+            </a>
+            <mat-divider></mat-divider>
+             <a
+        mat-list-item
+        routerLink="./orders"
+        routerLinkActive="list-item-active"
+        [matMenuTriggerFor]="menu3"
+      >
+        <span class="material-symbols-outlined" style="margin-right: 0.5rem"
+          >shopping_cart</span
+        >
+        Orders
+        <span class="material-symbols-outlined">arrow_drop_down</span>
+        <mat-menu #menu3="matMenu">
+          <!-- <button mat-menu-item [routerLink]="['/']" routerLinkActive="router-link-active">
+                        <span  class="material-symbols-outlined">Add </span>
+                        Sales Order</button> -->
+                        <button mat-menu-item routerLink="./purchaseorder" routerLinkActive="">
+                            <span  class="material-symbols-outlined">Add </span>
+                            Purchase Order</button>
+                            <button mat-menu-item routerLink="./salesorder" routerLinkActive="router-link-active">
+                                <span  class="material-symbols-outlined">Add </span>
+                                Sales Order</button>
+        </mat-menu>
+      </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLinkActive="list-item-active" routerLink="./messages">
+                <span class="material-symbols-outlined" style="margin-right: 0.5rem;">
+                    sms
+                </span>Messages
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLinkActive="list-item-active" routerLink="./products">
+                <span class="material-symbols-outlined" style="margin-right: 0.5rem;">
+                    business
+                </span> Products
+            </a>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+    </mat-drawer>
+
+  <mat-drawer-content>
+    <div>
+      <div class="topSize">
+        <mat-toolbar>
+          <button
+            mat-icon-button
+            (click)="togglesidebar()"
+            style="color: aliceblue"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <!-- <span class="example-spacer "></span> -->
+          <div class="user-profile-info">
+            <span class="user-profile-name"
+              >Hii Good Morning, {{ name }} !</span
+            >
+            <!-- <span class="user-profile-role">{{roleName}}</span> -->
+          </div>
+
+          <span class="example-spacer"></span>
+
+          <button mat-icon-button>
+            <span
+              class="material-symbols-outlined"
+              style="color: aliceblue; font-size: 24px"
+              >notifications</span
+            >
+          </button>
+
+          <ul class="tool-bar-menu">
+            <li class="userProfile">
+              <!-- <a [matMenuTriggerFor]="profile1">
+                            <img src="assets/images/logo new/user_image.png" alt="Avatar"
+                                class="img-circle profile_img imag">
+                        </a> -->
+              <a
+                mat-list-item
+                routerLinkActive="list-item-active"
+                [matMenuTriggerFor]="profilemenu2"
+              >
+                <img
+                  src="assets/images/logo new/user_image.png"
+                  alt="Avatar"
+                  class="img-circle profile_img imag"
+                />
+
+                <mat-menu #profilemenu2="matMenu">
+                  <button mat-menu-item (click)="employeeEdit()">
+                    <span class="material-symbols-outlined">
+                      person_pin_circle </span
+                    >update profile
+                  </button>
+                  <button mat-menu-item routerLink="./change-password">
+                    <span class="material-symbols-outlined">
+                      self_improvement </span
+                    >change password
+                  </button>
+                  <button mat-menu-item (click)="logout()">
+                    <span class="material-symbols-outlined">
+                      power_settings_new </span
+                    >logout
+                  </button>
+                </mat-menu>
+              </a>
+              <mat-menu #profile1="matMenu">
+                <button mat-menu-item class="nbuttom">Profile</button>
+              </mat-menu>
+            </li>
+          </ul>
+        </mat-toolbar>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

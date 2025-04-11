@@ -1,0 +1,96 @@
+
+table{
+   
+ 
+   margin-left: 110px;
+   margin-top: 30px;
+    overflow: hidden;
+    background-color: aliceblue;
+    max-width: 80%;
+}
+h1{
+   padding-top: 50px;
+    color: rgb(192, 10, 220);
+   padding-left: 40%;
+   text-decoration: underline;
+}
+th,td{
+    
+    text-align: center;
+    vertical-align: center;
+    height: 28px;
+    width: 150px;
+}
+th{
+
+    background-color: #009879;
+    color: white;
+    font-size: 14px;
+    height: 40px;
+}
+.names{
+
+
+    display: flex;
+   justify-content: space-between;
+    align-items: center;
+    margin-left: 80px;
+    margin-top: 30px;
+   
+
+}
+
+.customer{
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -20px;
+    align-items: center;
+    max-width: 35%;
+}
+.details{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 50%;
+   
+}
+.details p:nth-of-type(odd){
+
+        padding-right: 80px;
+        width: 300px;
+}
+.customer p:nth-of-type(odd){
+
+    padding-right: 80px;
+    max-width: 300px;
+}
+.a1{
+
+    font-weight: bold;
+    color: #07e1b5;
+
+}
+h2{
+
+    
+    color: blueviolet;
+    width: 100%;
+
+}
+.amount{
+
+   margin-left: 76%;
+   margin-top: 30px;
+}
+
+.abc{
+
+    margin-left: 60px;
+    margin-top: 20px;
+}
+.salesOrder{
+
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
