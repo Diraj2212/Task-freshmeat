@@ -4,9 +4,9 @@ services:
     build: .
     image: freshemeatretailer:v1
     ports:
-      - 80:80
+      - 8084:4200
     expose:
-      - 80
+      - 8084
     networks:
       - internalnet
 
